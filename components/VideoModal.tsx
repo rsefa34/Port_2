@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { X, Play } from 'lucide-react';
+import { X } from 'lucide-react';
 import { Project } from '../types';
 
 interface VideoModalProps {
@@ -53,22 +53,15 @@ const VideoModal: React.FC<VideoModalProps> = ({ project, onClose }) => {
           project.aspectRatio === 'portrait' ? 'aspect-[9/16]' : 
           project.aspectRatio === 'square' ? 'aspect-square' : 'aspect-video'
         }`}>
-          {/* 
-            In a real app, this would be a <video> tag or iframe (YouTube/Vimeo).
-            Using a placeholder overlay here since we don't have video files.
-          */}
-          <img 
-            src={project.thumbnailUrl} 
-            alt={project.title} 
-            className="w-full h-full object-cover opacity-50"
-          />
-          <div className="absolute inset-0 flex flex-col items-center justify-center">
-             <div className="w-20 h-20 rounded-full border-2 border-white flex items-center justify-center mb-4">
-               <Play size={32} fill="white" className="text-white ml-1" />
-             </div>
-             <p className="text-gray-300 font-medium">Video Playback Placeholder</p>
-             <p className="text-sm text-gray-500 mt-2">ID: {project.id}</p>
-          </div>
+          <video 
+            src={project.videoUrl} 
+            poster={project.thumbnailUrl}
+            controls 
+            autoPlay 
+            className="w-full h-full object-contain"
+          >
+            Your browser does not support the video tag.
+          </video>
         </div>
 
         {/* Footer/Details */}
