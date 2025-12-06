@@ -93,21 +93,6 @@ const VideoGrid: React.FC<VideoGridProps> = ({ onVideoClick }) => {
             <p className="text-gray-400">A curated selection of commercial and creative projects.</p>
           </div>
           
-          <div className="flex flex-wrap gap-2">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setFilter(cat as FilterType)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                  filter === cat 
-                    ? 'bg-white text-black' 
-                    : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
         </div>
 
         {/* Masonry Layout Simulation using CSS Columns */}

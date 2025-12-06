@@ -36,58 +36,63 @@ export const SERVICES: Service[] = [
 export const PROJECTS: Project[] = [
   {
     id: '1',
-    title: 'Neon Nights',
-    client: 'CyberDrink',
+    title: 'High-Fidelity Product Integration and Photorealistic Character Control',
+    client: 'Cosmetics & Beauty · Clerie Mask',
     category: 'Commercial',
-    // Neon City / Cyberpunk look
+    // Cosmetics & Beauty (Clerie Mask)
     thumbnailUrl: '1.png',
     videoUrl: '1.mp4',
     aspectRatio: 'landscape',
-    description: 'High-energy commercial spot featuring VFX and fast-paced editing.',
+    description:
+      'The biggest challenge in AI advertising is creating a convincing human expression while preserving the typography on the product. In this work, I achieved the "flawless skin" texture required by the cosmetics industry while ensuring the finest text on the product packaging (Net weight, ingredients) was rendered without distortion. The lighting, texture, and brand identity are on par with a studio-quality production.',
   },
   {
     id: '2',
-    title: 'Urban Explorer',
-    client: 'TravelCo',
-    category: 'Social Media',
-    // Vertical City/Travel shot
+    title: 'AI-Powered Graphic Design and Typographic Arrangement',
+    client: 'Food & Graphic Design · Pepper Paste',
+    category: 'Commercial',
+    // Food & Graphic Design (Pepper Paste)
     thumbnailUrl: '2.png',
     videoUrl: '2.mp4',
     aspectRatio: 'portrait',
-    description: 'Vertical storytelling optimized for TikTok and Reels retention.',
+    description:
+      'We push the boundaries of AI not only in video but also in static visual advertising. In this project, specific text elements like "Organic" and "650gr," as well as logos, were rendered flawlessly. The appetizing realism of the product texture and graphic design elements (badges, icons) have been integrated into a single composition with print-ready quality.',
   },
   {
     id: '3',
-    title: 'Origins',
-    client: 'History Channel',
-    category: 'Documentary',
-    // Cinematic Nature/Historical
+    title: 'User Experience (UX) Focused Scenario Design',
+    client: 'E-Commerce & UI/UX Integration · Mobile App',
+    category: 'Commercial',
+    // E-Commerce & UI/UX Integration (Mobile App)
     thumbnailUrl: '3.jpg',
     videoUrl: '3.mp4',
     aspectRatio: 'landscape',
-    description: 'Color grading and sound design for a historical mini-doc.',
+    description:
+      "Storytelling around a mobile application's usage is the heart of digital marketing. In this scene, a perfect balance was struck between the character's emotion and the clarity of the interface (UI) on the phone screen. Details such as product listings, prices, and 'Add to Cart' buttons were integrated into the visual/video with the sharpness of a real screenshot, avoiding AI hallucinations.",
   },
   {
     id: '4',
-    title: 'Fashion Week',
-    client: 'Vogue',
-    category: 'Social Media',
-    // Fashion Vertical
+    title: 'Macro Texture Detail and Material Realism',
+    client: 'Fashion & Outdoor · Blue Glove - Detail',
+    category: 'Commercial',
+    // Fashion & Outdoor (Blue Glove - Detail)
     thumbnailUrl: '4.png',
     videoUrl: '4.mp4',
     aspectRatio: 'portrait',
-    description: 'Fast turnaround event coverage with stylized edits.',
+    description:
+      "Conveying fabric technology is critical in outdoor clothing products. In this close-up shot, the glove's neoprene texture, stitching details, and the alignment of the brand logo with the fabric's folds were created with strict adherence to physical reality. The cold weather atmosphere is conveyed to the viewer through the color palette and depth of field.",
   },
   {
     id: '5',
-    title: 'Summer Vibes',
-    client: 'SodaPop',
+    title: 'Fluid Dynamics and Product Functionality Demonstration',
+    client: 'Performance Test & Physics Simulation · Waterproofing',
     category: 'Commercial',
-    // Beach/Summer Square
+    // Performance Test & Physics Simulation (Waterproofing)
     thumbnailUrl: '5.png',
     videoUrl: '5.mp4',
     aspectRatio: 'square',
-    description: 'Social-first campaign designed for Instagram feed.',
+    description:
+      "Using 'Start/End Frame' techniques, the product from the previous visual was maintained in identical form to test its waterproof feature. The water flowing off the glove's surface, the behavior of the droplets, and the light refractions serve as a demonstration of AI flawlessly processing the laws of physics (fluid dynamics). Spatial and product consistency were achieved with complete success.",
   },
 ];
 
