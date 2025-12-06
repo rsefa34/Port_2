@@ -39,7 +39,7 @@ export const PROJECTS: Project[] = [
     title: 'Neon Nights',
     client: 'CyberDrink',
     category: 'Commercial',
-    thumbnailUrl: '/media/thumbnails/1.png',
+    thumbnailUrl: '1.png',
     videoUrl: '/media/projects/1.mp4',
     aspectRatio: 'landscape',
     description: 'High-energy commercial spot featuring VFX and fast-paced editing.',
