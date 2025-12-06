@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
-import { X } from 'lucide-react';
-import { Project } from '../types';
+'use client';
+
+import React, { useEffect, useState } from 'react';
+import { X, AlertTriangle } from 'lucide-react';
+import { Project } from '../data/types';
 
 interface VideoModalProps {
   project: Project | null;
@@ -8,6 +10,8 @@ interface VideoModalProps {
 }
 
 const VideoModal: React.FC<VideoModalProps> = ({ project, onClose }) => {
+  const [videoError, setVideoError] = useState(false);
+
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -15,6 +19,8 @@ const VideoModal: React.FC<VideoModalProps> = ({ project, onClose }) => {
     if (project) {
       document.body.style.overflow = 'hidden';
       window.addEventListener('keydown', handleEsc);
+      // Reset error state when project opens
+      setVideoError(false);
     }
     return () => {
       document.body.style.overflow = 'unset';
@@ -53,15 +59,28 @@ const VideoModal: React.FC<VideoModalProps> = ({ project, onClose }) => {
           project.aspectRatio === 'portrait' ? 'aspect-[9/16]' : 
           project.aspectRatio === 'square' ? 'aspect-square' : 'aspect-video'
         }`}>
-          <video 
-            src={project.videoUrl} 
-            poster={project.thumbnailUrl}
-            controls 
-            autoPlay 
-            className="w-full h-full object-contain"
-          >
-            Your browser does not support the video tag.
-          </video>
+          {!videoError ? (
+            <video 
+              src={project.videoUrl} 
+              poster={project.thumbnailUrl}
+              controls 
+              autoPlay 
+              className="w-full h-full object-contain"
+              onError={() => setVideoError(true)}
+            >
+              Your browser does not support the video tag.
+            </video>
+          ) : (
+            <div className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-900 p-8 text-center">
+              <AlertTriangle className="text-yellow-500 mb-4" size={48} />
+              <h3 className="text-xl font-bold text-white mb-2">Video Unavailable</h3>
+              <p className="text-gray-400 mb-4">Could not load the media file from the path below:</p>
+              <div className="bg-black/50 p-4 rounded-lg border border-white/10 max-w-full overflow-x-auto">
+                <code className="text-sm font-mono text-red-400">{project.videoUrl}</code>
+              </div>
+              <p className="text-sm text-gray-500 mt-4">Please check if the file exists in your project folder.</p>
+            </div>
+          )}
         </div>
 
         {/* Footer/Details */}

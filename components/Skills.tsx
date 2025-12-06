@@ -1,5 +1,5 @@
 import React from 'react';
-import { SKILLS } from '../constants';
+import { SKILLS } from '../data/constants';
 import { Sparkles, Bot, Scissors, Aperture, Image, Smartphone } from 'lucide-react';
 
 const iconMap: Record<string, React.ElementType> = {

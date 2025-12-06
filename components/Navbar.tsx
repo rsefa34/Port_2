@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
-import { NAV_LINKS } from '../constants';
+import { NAV_LINKS } from '../data/constants';
 import { Menu, X } from 'lucide-react';
 
 const Navbar: React.FC = () => {

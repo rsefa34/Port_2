@@ -1,5 +1,5 @@
 import React from 'react';
-import { SERVICES } from '../constants';
+import { SERVICES } from '../data/constants';
 import { Clapperboard, Terminal, SlidersHorizontal, PenLine } from 'lucide-react';
 
 const iconMap: Record<string, React.ElementType> = {

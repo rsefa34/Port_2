@@ -1,11 +1,66 @@
+'use client';
+
 import React, { useState } from 'react';
-import { PROJECTS } from '../constants';
-import { Project, FilterType } from '../types';
-import { Play, Maximize2 } from 'lucide-react';
+import { PROJECTS } from '../data/constants';
+import { Project, FilterType } from '../data/types';
+import { Play } from 'lucide-react';
 
 interface VideoGridProps {
   onVideoClick: (project: Project) => void;
 }
+
+const ProjectCard: React.FC<{ project: Project; onClick: (p: Project) => void }> = ({ project, onClick }) => {
+  const [hasError, setHasError] = useState(false);
+
+  return (
+    <div 
+      className="break-inside-avoid relative group rounded-xl overflow-hidden cursor-pointer bg-gray-900 border border-white/5 mb-6"
+      onClick={() => onClick(project)}
+    >
+      {/* Aspect Ratio Container */}
+      <div className={`relative w-full ${
+        project.aspectRatio === 'portrait' ? 'aspect-[9/16]' : 
+        project.aspectRatio === 'square' ? 'aspect-square' : 'aspect-video'
+      }`}>
+        
+        {!hasError ? (
+          <img 
+            src={project.thumbnailUrl} 
+            alt={project.title}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            onError={(e) => {
+              console.error(`Failed to load image for ${project.title}:`, project.thumbnailUrl);
+              setHasError(true);
+            }}
+          />
+        ) : (
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-800 p-4 text-center border-2 border-red-500/20">
+             <span className="text-red-400 font-bold text-xs uppercase mb-2">Image Not Found</span>
+             <code className="text-[10px] text-gray-400 break-all bg-black/50 p-2 rounded w-full font-mono">
+               {project.thumbnailUrl}
+             </code>
+          </div>
+        )}
+        
+        {/* Overlay - Only show if no error or on top of image */}
+        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
+           <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center transform scale-75 group-hover:scale-100 transition-transform duration-300">
+             <Play fill="white" className="text-white ml-1" />
+           </div>
+        </div>
+
+        {/* Info Badge (Bottom) */}
+        <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+          <span className="text-xs font-bold text-blue-400 uppercase tracking-wider mb-1 block">
+            {project.client}
+          </span>
+          <h3 className="text-lg font-bold text-white leading-tight">{project.title}</h3>
+          <p className="text-sm text-gray-300 mt-1 line-clamp-2">{project.description}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const VideoGrid: React.FC<VideoGridProps> = ({ onVideoClick }) => {
   const [filter, setFilter] = useState<FilterType>('All');
@@ -43,41 +98,13 @@ const VideoGrid: React.FC<VideoGridProps> = ({ onVideoClick }) => {
         </div>
 
         {/* Masonry Layout Simulation using CSS Columns */}
-        <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+        <div className="columns-1 md:columns-2 lg:columns-3 gap-6">
           {filteredProjects.map((project) => (
-            <div 
+            <ProjectCard 
               key={project.id} 
-              className="break-inside-avoid relative group rounded-xl overflow-hidden cursor-pointer bg-gray-900 border border-white/5"
-              onClick={() => onVideoClick(project)}
-            >
-              {/* Aspect Ratio Container */}
-              <div className={`relative w-full ${
-                project.aspectRatio === 'portrait' ? 'aspect-[9/16]' : 
-                project.aspectRatio === 'square' ? 'aspect-square' : 'aspect-video'
-              }`}>
-                <img 
-                  src={project.thumbnailUrl} 
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
-                   <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center transform scale-75 group-hover:scale-100 transition-transform duration-300">
-                     <Play fill="white" className="text-white ml-1" />
-                   </div>
-                </div>
-
-                {/* Info Badge (Bottom) */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                  <span className="text-xs font-bold text-blue-400 uppercase tracking-wider mb-1 block">
-                    {project.client}
-                  </span>
-                  <h3 className="text-lg font-bold text-white leading-tight">{project.title}</h3>
-                  <p className="text-sm text-gray-300 mt-1 line-clamp-2">{project.description}</p>
-                </div>
-              </div>
-            </div>
+              project={project} 
+              onClick={onVideoClick} 
+            />
           ))}
         </div>
       </div>
