@@ -17,17 +17,15 @@ const ProjectCard: React.FC<{ project: Project; onClick: (p: Project) => void }>
       className="break-inside-avoid relative group rounded-xl overflow-hidden cursor-pointer bg-gray-900 border border-white/5 mb-6"
       onClick={() => onClick(project)}
     >
-      {/* Aspect Ratio Container */}
-      <div className={`relative w-full ${
-        project.aspectRatio === 'portrait' ? 'aspect-[9/16]' : 
-        project.aspectRatio === 'square' ? 'aspect-square' : 'aspect-video'
-      }`}>
+      {/* Container - relative positioning for overlays */}
+      <div className="relative w-full">
         
         {!hasError ? (
           <img 
             src={project.thumbnailUrl} 
             alt={project.title}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            // Fit width to column, height adjusts automatically to preserve aspect ratio
+            className="w-full h-auto block transition-transform duration-700 group-hover:scale-105"
             onLoad={() => {
               console.log(`[Image Loaded] Successfully loaded thumbnail for "${project.title}" (${project.thumbnailUrl})`);
             }}
@@ -45,7 +43,11 @@ const ProjectCard: React.FC<{ project: Project; onClick: (p: Project) => void }>
             }}
           />
         ) : (
-          <div className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-800 p-4 text-center border-2 border-red-500/20">
+          // Fallback: Use fixed aspect ratio if image fails to load so layout doesn't collapse
+          <div className={`w-full flex flex-col items-center justify-center bg-zinc-800 p-4 text-center border-2 border-red-500/20 ${
+            project.aspectRatio === 'portrait' ? 'aspect-[9/16]' : 
+            project.aspectRatio === 'square' ? 'aspect-square' : 'aspect-video'
+          }`}>
              <span className="text-red-400 font-bold text-xs uppercase mb-2">Image Not Found</span>
              <code className="text-[10px] text-gray-400 break-all bg-black/50 p-2 rounded w-full font-mono">
                {project.thumbnailUrl}
