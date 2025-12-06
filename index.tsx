@@ -1,18 +1,1 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import RootLayout from './app/layout';
-import Home from './app/page';
-
-const rootElement = document.getElementById('root');
-if (!rootElement) {
-  throw new Error("Could not find root element to mount to");
-}
-
-const root = ReactDOM.createRoot(rootElement);
-root.render(
-  <React.StrictMode>
-    <RootLayout>
-      <Home />
-    </RootLayout>
-  </React.StrictMode>
-);
+export {}; // This file is deprecated and can be safely deleted. Next.js uses app/layout.tsx and app/page.tsx.
