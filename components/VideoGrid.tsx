@@ -28,8 +28,19 @@ const ProjectCard: React.FC<{ project: Project; onClick: (p: Project) => void }>
             src={project.thumbnailUrl} 
             alt={project.title}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            onLoad={() => {
+              console.log(`[Image Loaded] Successfully loaded thumbnail for "${project.title}" (${project.thumbnailUrl})`);
+            }}
             onError={(e) => {
-              console.error(`Failed to load image for ${project.title}:`, project.thumbnailUrl);
+              const target = e.currentTarget;
+              console.error(`[Image Load Error]
+                Project: "${project.title}"
+                Configured URL: "${project.thumbnailUrl}"
+                Resolved URL: "${target.src}"
+                Natural Width: ${target.naturalWidth}
+                Natural Height: ${target.naturalHeight}
+                Timestamp: ${new Date().toISOString()}
+              `);
               setHasError(true);
             }}
           />

@@ -67,7 +67,15 @@ const VideoModal: React.FC<VideoModalProps> = ({ project, onClose }) => {
               autoPlay 
               className="w-full h-full object-contain"
               onError={(e) => {
-                console.error(`Error loading video for project "${project.title}":`, project.videoUrl, e);
+                const video = e.currentTarget;
+                const error = video.error;
+                console.error(`[Video Load Error]
+                  Project: "${project.title}"
+                  URL: "${project.videoUrl}"
+                  Error Code: ${error?.code}
+                  Error Message: ${error?.message}
+                  Network State: ${video.networkState}
+                `);
                 setVideoError(true);
               }}
             >
