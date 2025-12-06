@@ -36,11 +36,11 @@ const Hero: React.FC = () => {
         </a>
         
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-200 to-gray-500 animate-fade-in-up delay-100">
-          Recep Sefa Aktaş
+          AI Director
         </h1>
         
         <p className="text-2xl md:text-3xl font-normal text-gray-400 mb-10 animate-fade-in-up delay-200">
-          AI Director
+          Recep Sefa Aktaş
         </p>
         
         <p className="text-xl md:text-2xl text-gray-400 max-w-4xl mx-auto mb-10 font-light leading-relaxed animate-fade-in-up delay-300">

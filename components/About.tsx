@@ -9,17 +9,21 @@ const About: React.FC = () => {
             {/* Image/Visual Side */}
             <div className="w-full lg:w-1/2 relative group">
                 <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-gray-800 relative z-10 border border-white/10">
-                    <img
-                        src="https://images.unsplash.com/photo-1542206395-9f9947c18c27?q=80&w=1000&auto=format&fit=crop" 
-                        alt="Recep Sefa Aktaş - Creative Director"
+                    <video
+                        src="profile_video.mp4"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
                         className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700 filter grayscale group-hover:grayscale-0"
+                        aria-label="Recep Sefa Aktaş - Creative Director"
                     />
-                     <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
-                     <div className="absolute bottom-8 left-8 right-8 text-white">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                    <div className="absolute bottom-8 left-8 right-8 text-white">
                         <div className="w-12 h-1 bg-blue-500 mb-4 rounded-full"></div>
                         <p className="font-mono text-sm text-blue-400 mb-2 uppercase tracking-widest">Creative AI Director</p>
                         <h3 className="text-3xl font-bold tracking-tight">Recep Sefa Aktaş</h3>
-                     </div>
+                    </div>
                 </div>
                 {/* Decorative glow */}
                 <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-2xl opacity-50 -z-10 rounded-3xl"></div>
