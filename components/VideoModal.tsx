@@ -66,7 +66,10 @@ const VideoModal: React.FC<VideoModalProps> = ({ project, onClose }) => {
               controls 
               autoPlay 
               className="w-full h-full object-contain"
-              onError={() => setVideoError(true)}
+              onError={(e) => {
+                console.error(`Error loading video for project "${project.title}":`, project.videoUrl, e);
+                setVideoError(true);
+              }}
             >
               Your browser does not support the video tag.
             </video>
